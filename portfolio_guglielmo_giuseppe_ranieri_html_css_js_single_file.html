@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guglielmo Giuseppe Ranieri — Portfolio</title>
+  <meta name="description" content="Portfolio di Guglielmo Giuseppe Ranieri: studente di Liceo Scientifico Scienze Applicate, sviluppatore junior e giocatore di scacchi (FIDE 1801)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0d12;
+      --card: #111520;
+      --text: #e6e9ef;
+      --muted: #a5adba;
+      --brand: #6ea8fe;
+      --accent: #7bffb1;
+      --ring: rgba(110,168,254,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      background: radial-gradient(1200px 1200px at 90% -10%, rgba(110,168,254,.12), transparent 50%),
+                  radial-gradient(1000px 900px at -10% 110%, rgba(123,255,177,.10), transparent 45%),
+                  var(--bg);
+      color: var(--text);
+      line-height:1.6;
+    }
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{width:min(1100px, 92%); margin-inline:auto}
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,13,18,.85), rgba(11,13,18,.55));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.3px}
+    .dot{width:10px;height:10px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px var(--ring)}
+    .links{display:flex; gap:18px; align-items:center}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; background:var(--card); border:1px solid rgba(255,255,255,.06); box-shadow: var(--shadow)}
+    .btn:hover{transform: translateY(-1px)}
+    .btn-ghost{background:transparent; border:1px solid rgba(255,255,255,.08)}
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; padding:48px 0 32px}
+    .portrait{
+      background: linear-gradient(160deg, rgba(110,168,254,.15), rgba(123,255,177,.12));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 18px; box-shadow: var(--shadow);
+    }
+    .portrait-inner{aspect-ratio: 4/5; border-radius: 12px; background: url('https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat}
+    .hero h1{font-size: clamp(28px, 4vw, 48px); line-height:1.1; margin:0 0 10px}
+    .subtitle{color:var(--muted); font-weight:500; margin: 0 0 16px}
+    .lead{color:#d7dce6}
+    .chiprow{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .chip{padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); font-size:.95rem}
+
+    /* Sections */
+    section{padding: 26px 0}
+    .section-title{font-size: clamp(20px, 2.6vw, 28px); margin: 0 0 16px}
+
+    /* Grid cards */
+    .grid{display:grid; gap:18px}
+    .grid.cards{grid-template-columns: repeat( auto-fit, minmax(240px, 1fr) );}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding:18px; box-shadow: var(--shadow)}
+    .card h3{margin:0 0 6px}
+    .card p{margin:0; color:#c8cfdd}
+    .tagrow{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+    .tag{font-size:.85rem; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08)}
+
+    /* Timeline */
+    .timeline{display:grid; gap:14px; position:relative}
+    .timeline::before{content:""; position:absolute; left:12px; top:0; bottom:0; width:2px; background: linear-gradient(180deg, var(--brand), transparent)}
+    .tl-item{display:grid; grid-template-columns: 30px 1fr; gap:14px}
+    .tl-dot{width:24px;height:24px;border-radius:50%; background:var(--brand); box-shadow:0 0 0 6px var(--ring); margin-top:4px}
+    .tl-card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:14px}
+    .tl-card h4{margin:0 0 6px}
+    .tl-org{color:var(--muted); font-weight:600}
+
+    /* Footer */
+    footer{padding:30px 0 60px; color:var(--muted)}
+
+    /* Utilities */
+    .sr{position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden}
+    .row{display:flex; gap:12px; flex-wrap:wrap}
+    .col-2{display:grid; grid-template-columns: 1fr 1fr; gap:18px}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero{grid-template-columns: 1fr;}
+      .col-2{grid-template-columns: 1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Guglielmo G. Ranieri</span>
+      </div>
+      <nav class="links" aria-label="Navigazione principale">
+        <a href="#portfolio" class="btn btn-ghost">Portfolio</a>
+        <a href="#skills" class="btn btn-ghost">Competenze</a>
+        <a href="#timeline" class="btn btn-ghost">Momenti salienti</a>
+        <a href="#education" class="btn btn-ghost">Istruzione</a>
+        <button id="themeBtn" class="btn" type="button" aria-pressed="false">🌙 Tema</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div>
+        <p class="subtitle">Ritratto</p>
+        <h1>Guglielmo Giuseppe Ranieri</h1>
+        <p class="subtitle">Studente • Sviluppatore junior • Giocatore di scacchi (FIDE 1801)</p>
+        <p class="lead">
+          Sono uno studente del Liceo Scientifico <strong>Scienze Applicate</strong> presso <strong>Angelo Messedaglia (Verona)</strong>.
+          Amo costruire cose sul web e allenare la mente con gli scacchi. Qui trovi un portfolio con progetti,
+          competenze e alcuni risultati sportivi/accademici. Spero ti piaccia!
+        </p>
+        <div class="chiprow" role="list" aria-label="Competenze principali">
+          <span class="chip" role="listitem">HTML</span>
+          <span class="chip" role="listitem">CSS</span>
+          <span class="chip" role="listitem">JavaScript</span>
+          <span class="chip" role="listitem">Node.js</span>
+          <span class="chip" role="listitem">Git/GitHub</span>
+        </div>
+        <div class="row" style="margin-top:18px">
+          <a class="btn" href="#portfolio">📁 Vai al Portfolio</a>
+          <a class="btn btn-ghost" href="#contact">✉️ Contatto</a>
+        </div>
+      </div>
+      <div class="portrait" aria-hidden="true">
+        <div class="portrait-inner" title="Ritratto (segnaposto)"></div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+      <h2 class="section-title">Portfolio</h2>
+      <div class="grid cards">
+        <article class="card">
+          <h3>GughiAPP (Concept)</h3>
+          <p>App che conta i piegamenti via fotocamera e premia con ricompense per un personaggio stile Roblox.</p>
+          <div class="tagrow">
+            <span class="tag">JavaScript</span><span class="tag">Computer Vision (concept)</span><span class="tag">Game UI</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Pagina Portfolio</h3>
+          <p>Questo sito: HTML, CSS e JS in un singolo file, responsive, con dark mode e timeline.</p>
+          <div class="tagrow">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>GitHub</h3>
+          <p>Dai un'occhiata ad altri progetti e prove tecniche.</p>
+          <p style="margin-top:8px"><a href="#" aria-label="Apri GitHub (inserisci link)">Visita il mio GitHub →</a></p>
+          <div class="tagrow">
+            <span class="tag">Versionamento</span><span class="tag">Open Source</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2 class="section-title">Riepilogo delle competenze</h2>
+      <div class="grid cards">
+        <article class="card">
+          <h3>Tecnologie</h3>
+          <p>HTML • CSS • JavaScript • Node.js • Git/GitHub</p>
+        </article>
+        <article class="card">
+          <h3>Ruoli</h3>
+          <p>Sviluppatore web junior (front-end/full stack basic) • Studente liceale</p>
+        </article>
+        <article class="card">
+          <h3>Extra</h3>
+          <p>Scacchi competitivi (FIDE 1801) • Problem solving • Comunicazione</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- TIMELINE / HIGHLIGHTS -->
+    <section id="timeline">
+      <h2 class="section-title">Momenti salienti della carriera/sport</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-card">
+            <h4>Rappresentanza Veneto CONI <span class="tl-org">(2023)</span></h4>
+            <p>Selezionato per rappresentare il Veneto in gara nazionale.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-card">
+            <h4>Campione Regionale Veneto U14</h4>
+            <p>Titolo regionale di categoria negli scacchi.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-card">
+            <h4>Top 35 Italia di categoria</h4>
+            <p>Tra i migliori 35 in Italia nella propria fascia d'età/categoria.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-card">
+            <h4>Rating FIDE 1801</h4>
+            <p>Miglior risultato personale: <strong>1N</strong> (prima nazionale) tra i migliori a livello giovanile.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="col-2">
+      <div>
+        <h2 class="section-title">Istruzione</h2>
+        <article class="card">
+          <h3>Angelo Messedaglia, Verona — Liceo Scientifico Scienze Applicate</h3>
+          <p>Studente. Esame di terza media superato; percorso STEM con focus su informatica.</p>
+          <p style="margin-top:8px"><a href="https://www.messedagliavr.edu.it/" target="_blank" rel="noopener">Visita l'istituto →</a></p>
+        </article>
+      </div>
+      <div>
+        <h2 class="section-title">Obiettivi</h2>
+        <article class="card">
+          <h3>Prossimi passi</h3>
+          <ul>
+            <li>Pubblicare progetti su GitHub e migliorare la documentazione.</li>
+            <li>Approfondire JavaScript (fetch API, moduli, piccoli backend Node).</li>
+            <li>Integrare un progetto web legato agli scacchi (es. visualizzatore PGN).</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="section-title">Contatto</h2>
+      <div class="grid cards">
+        <article class="card">
+          <h3>Email</h3>
+          <p><a href="mailto:guglielmo.ranieri.10@gmail.com">guglielmo.ranieri.10@gmail.com</a></p>
+          <button class="btn" type="button" id="copyEmail">Copia email</button>
+        </article>
+        <article class="card">
+          <h3>LinkedIn</h3>
+          <p><a href="#" aria-label="Profilo LinkedIn (aggiungi link quando pronto)">Aggiungi il tuo LinkedIn →</a></p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <p>© <span id="year"></span> Guglielmo Giuseppe Ranieri</p>
+  </footer>
+
+  <script>
+    // Anno dinamico
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Copia email
+    const copyBtn = document.getElementById('copyEmail');
+    copyBtn?.addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText('guglielmo.ranieri.10@gmail.com');
+        copyBtn.textContent = 'Copiato ✔';
+        setTimeout(()=> copyBtn.textContent = 'Copia email', 1600);
+      }catch(err){
+        alert('Non riesco a copiare. Tieni premuto sull\'indirizzo e copia manualmente.');
+      }
+    });
+
+    // Tema (dark di default, permette chiaro)
+    const btn = document.getElementById('themeBtn');
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+    const applyTheme = (mode) => {
+      const root = document.documentElement;
+      if(mode === 'light'){
+        root.style.setProperty('--bg', '#fbfbfe');
+        root.style.setProperty('--card', '#ffffff');
+        root.style.setProperty('--text', '#0b0d12');
+        root.style.setProperty('--muted', '#475569');
+        root.style.setProperty('--shadow', '0 10px 30px rgba(0,0,0,.08)');
+      } else {
+        root.style.setProperty('--bg', '#0b0d12');
+        root.style.setProperty('--card', '#111520');
+        root.style.setProperty('--text', '#e6e9ef');
+        root.style.setProperty('--muted', '#a5adba');
+        root.style.setProperty('--shadow', '0 10px 30px rgba(0,0,0,.35)');
+      }
+    }
+    // Stato persistito
+    const saved = localStorage.getItem('theme');
+    let mode = saved || 'dark';
+    if(!saved && prefersLight.matches) mode = 'light';
+    applyTheme(mode);
+    btn?.setAttribute('aria-pressed', mode==='light' ? 'true' : 'false');
+
+    btn?.addEventListener('click', () => {
+      mode = (mode === 'dark') ? 'light' : 'dark';
+      applyTheme(mode);
+      btn.setAttribute('aria-pressed', mode==='light' ? 'true' : 'false');
+      btn.textContent = mode === 'dark' ? '🌙 Tema' : '☀️ Tema';
+      localStorage.setItem('theme', mode);
+    });
+
+    // Piccola animazione in-view
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.animate([
+            {opacity:0, transform:'translateY(8px)'},
+            {opacity:1, transform:'translateY(0)'}
+          ], {duration:450, easing:'cubic-bezier(.2,.6,.2,1)', fill:'forwards'});
+          io.unobserve(e.target);
+        }
+      })
+    }, {threshold:.1});
+    document.querySelectorAll('.card, .portrait').forEach(el=> io.observe(el));
+  </script>
+</body>
+</html>
